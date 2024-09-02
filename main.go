@@ -32,6 +32,7 @@ func main() {
 
 	routerV1 := router.Group("/v1")
 	routerV1.GET("/health", handlers.HandlerReadiness)
+	routerV1.GET("/err", handlers.HandlerError)
 
 	srv := &http.Server{
 		Addr:    ":" + portString,
