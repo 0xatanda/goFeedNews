@@ -7,10 +7,15 @@ import (
 	"os"
 
 	"github.com/0xatanda/goFeedNews/handlers"
+	db "github.com/0xatanda/goFeedNews/sql/database"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
+
+type apiConfig struct {
+	DB db.Queries
+}
 
 func main() {
 	godotenv.Load(".env")

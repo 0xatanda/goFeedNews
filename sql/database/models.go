@@ -5,12 +5,14 @@
 package db
 
 import (
-	"github.com/jackc/pgx/v5/pgtype"
+	"time"
+
+	"github.com/google/uuid"
 )
 
 type User struct {
-	ID        pgtype.UUID
+	ID        uuid.UUID
 	Name      string
-	CreateAt  pgtype.Timestamp
-	UpdatedAt pgtype.Timestamp
+	CreateAt  time.Time
+	UpdatedAt time.Time
 }

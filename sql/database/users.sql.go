@@ -7,8 +7,9 @@ package db
 
 import (
 	"context"
+	"time"
 
-	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/google/uuid"
 )
 
 const createUser = `-- name: CreateUser :one
@@ -18,14 +19,14 @@ RETURNING id, name, create_at, updated_at
 `
 
 type CreateUserParams struct {
-	ID        pgtype.UUID
+	ID        uuid.UUID
 	Name      string
-	CreateAt  pgtype.Timestamp
-	UpdatedAt pgtype.Timestamp
+	CreateAt  time.Time
+	UpdatedAt time.Time
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
-	row := q.db.QueryRow(ctx, createUser,
+	row := q.db.QueryRowContext(ctx, createUser,
 		arg.ID,
 		arg.Name,
 		arg.CreateAt,
